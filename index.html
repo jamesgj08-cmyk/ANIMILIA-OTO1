@@ -1,0 +1,627 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Animalia is a premium digital coloring collection with 300+ story-rich animal scenes and 170 bonus creative prompts.">
+	<title>Animalia | A Life Beyond Their Homes</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet">
+	<style>
+		:root {
+			--forest: #193d35;
+			--forest-deep: #102b27;
+			--ink: #272522;
+			--paper: #fbf8f0;
+			--cream: #f1e7d3;
+			--gold: #d59b46;
+			--gold-light: #f2d39e;
+			--rust: #b95d3f;
+			--line: rgba(39, 37, 34, .14);
+			--serif: "Fraunces", Georgia, serif;
+			--sans: "DM Sans", Arial, sans-serif;
+		}
+
+		* { box-sizing: border-box; }
+		html { scroll-behavior: smooth; }
+		body {
+			margin: 0;
+			color: var(--ink);
+			background: var(--paper);
+			font-family: var(--sans);
+			line-height: 1.55;
+		}
+		img { display: block; max-width: 100%; }
+		a { color: inherit; }
+		.shell { width: min(1160px, calc(100% - 40px)); margin: 0 auto; }
+		.eyebrow {
+			color: var(--rust);
+			font-size: .75rem;
+			font-weight: 700;
+			letter-spacing: .14em;
+			text-transform: uppercase;
+		}
+		h1, h2, h3, p { margin-top: 0; }
+		h1, h2, h3 { font-family: var(--serif); line-height: 1.06; }
+		h1 { font-size: clamp(3.1rem, 7vw, 6.8rem); letter-spacing: -.045em; margin-bottom: 24px; }
+		h2 { font-size: clamp(2.5rem, 5vw, 4.6rem); letter-spacing: -.035em; margin-bottom: 18px; }
+		h3 { font-size: 1.45rem; margin-bottom: 10px; }
+		.button {
+			align-items: center;
+			background: var(--rust);
+			border: 1px solid var(--rust);
+			border-radius: 3px;
+			color: #fffaf2;
+			display: inline-flex;
+			font-size: .84rem;
+			font-weight: 700;
+			gap: 10px;
+			justify-content: center;
+			letter-spacing: .05em;
+			padding: 15px 23px;
+			text-decoration: none;
+			text-transform: uppercase;
+			transition: transform .2s ease, background .2s ease;
+		}
+		.button:hover { background: #93482f; transform: translateY(-2px); }
+		.button.light { background: transparent; border-color: rgba(255,255,255,.5); color: #fffaf2; }
+		.button.light:hover { background: rgba(255,255,255,.1); }
+		.announcement { background: var(--gold); color: var(--forest-deep); font-size: .82rem; font-weight: 700; letter-spacing: .08em; padding: 10px 20px; text-align: center; text-transform: uppercase; }
+		.nav { align-items: center; display: flex; justify-content: space-between; padding: 25px 0; }
+		.wordmark { color: var(--forest); font-family: var(--serif); font-size: 1.65rem; font-weight: 700; letter-spacing: .08em; }
+		.nav-note { color: #756e63; font-size: .83rem; }
+		.top-badges { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+		.top-badges span {
+			display: inline-flex; align-items: center; justify-content: center;
+			padding: 8px 12px; border-radius: 999px; background: rgba(25,61,53,.06); border: 1px solid rgba(25,61,53,.1);
+			font-size: .72rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--forest);
+		}
+		.hero { background: linear-gradient(115deg, #f4e7d9 0%, #fbf8f3 48%, #f1e2d4 100%); overflow: hidden; padding: 40px 0 86px; position: relative; }
+		.hero::after { background: rgba(213,155,70,.14); border-radius: 50%; content: ""; height: 320px; opacity: .9; position: absolute; right: -110px; top: 140px; width: 320px; }
+		.hero::before { background: rgba(142,170,156,.16); border-radius: 50%; content: ""; height: 220px; left: -80px; position: absolute; top: 35px; width: 220px; }
+		.hero-grid { align-items: center; display: grid; gap: 50px; grid-template-columns: .92fr 1.08fr; position: relative; z-index: 1; }
+		.hero-copy { max-width: 560px; }
+		.hero-copy p { color: #625d54; font-size: 1.12rem; max-width: 470px; }
+		.hero-actions { align-items: center; display: flex; flex-wrap: wrap; gap: 16px; margin-top: 32px; }
+		.microcopy { color: #756e63; font-size: .8rem; margin: 13px 0 0; }
+		.hero-visual { border: 10px solid rgba(255,255,255,.65); box-shadow: 20px 25px 50px rgba(59, 42, 24, .16); transform: rotate(1.2deg); }
+		.hero-visual img { aspect-ratio: 1.35 / 1; object-fit: cover; width: 100%; }
+		.proof-bar { background: var(--forest); color: #fffaf2; padding: 20px 0; }
+		.proof-items { display: grid; gap: 18px; grid-template-columns: repeat(3, 1fr); text-align: center; }
+		.proof-items strong { display: block; font-family: var(--serif); font-size: 1.45rem; }
+		.proof-items span { color: #cdd7cc; font-size: .78rem; letter-spacing: .05em; text-transform: uppercase; }
+		.section { padding: 112px 0; }
+		.section-heading { max-width: 680px; }
+		.section-heading.center { margin: 0 auto 48px; text-align: center; }
+		.intro-grid { align-items: center; display: grid; gap: 70px; grid-template-columns: .86fr 1.14fr; }
+		.intro-copy p { color: #625d54; font-size: 1.05rem; }
+		.feature-list { border-top: 1px solid var(--line); margin-top: 30px; }
+		.feature { border-bottom: 1px solid var(--line); display: grid; gap: 18px; grid-template-columns: 48px 1fr; padding: 18px 0; }
+		.feature-number { color: var(--rust); font-family: var(--serif); font-size: 1.4rem; }
+		.feature h3 { font-family: var(--sans); font-size: 1rem; margin-bottom: 3px; }
+		.feature p { color: #756e63; font-size: .9rem; margin: 0; }
+		.visual-frame { background: var(--cream); padding: 16px; }
+		.visual-frame img { aspect-ratio: 1.25 / 1; object-fit: cover; width: 100%; }
+		.dark-section { background: var(--forest-deep); color: #fffaf2; }
+		.dark-section .eyebrow { color: var(--gold-light); }
+		.dark-section .section-heading p { color: #cbd3c8; }
+		.gallery { display: grid; gap: 18px; grid-template-columns: repeat(3, 1fr); }
+		.sample-card { background: #fffaf2; color: var(--ink); padding: 10px 10px 14px; transform: rotate(var(--tilt)); }
+		.sample-card:nth-child(2n) { --tilt: 1.2deg; }
+		.sample-card:nth-child(2n+1) { --tilt: -1deg; }
+		.sample-card img { aspect-ratio: 3 / 4; object-fit: cover; width: 100%; }
+		.sample-card figcaption { font-family: var(--serif); font-size: 1.05rem; padding: 11px 4px 0; }
+		.sample-note { color: #bdc9bd; font-size: .92rem; margin: 28px auto 0; max-width: 620px; text-align: center; }
+		.story-grid { align-items: start; display: grid; gap: 24px; grid-template-columns: repeat(3, minmax(0,1fr)); margin-top: 48px; }
+		.story-card { background: #fffaf2; border: 1px solid var(--line); padding: 24px; }
+		.story-card .number { color: var(--rust); font-family: var(--serif); font-size: 2.3rem; line-height: 1; margin-bottom: 12px; }
+		.story-card h3 { font-size: 1.5rem; margin-bottom: 10px; }
+		.story-card p { color: #625d54; font-size: .97rem; margin: 0; }
+		.long-copy { color: #625d54; font-size: 1.06rem; max-width: 720px; }
+		.benefits-grid { display: grid; gap: 22px; grid-template-columns: repeat(2, minmax(0,1fr)); margin-top: 36px; }
+		.benefit { background: #fffaf2; border: 1px solid var(--line); padding: 24px 22px; }
+		.benefit h3 { color: var(--ink); font-size: 1.5rem; margin-bottom: 10px; }
+		.benefit p { color: var(--muted); font-size: .96rem; margin: 0; }
+		.process-grid { display: grid; gap: 20px; grid-template-columns: repeat(3, minmax(0,1fr)); margin-top: 42px; }
+		.faq-grid { display: grid; gap: 18px; grid-template-columns: repeat(2, minmax(0,1fr)); margin-top: 36px; }
+		.faq-item { background: #fffaf2; border: 1px solid var(--line); padding: 22px 20px; }
+		.faq-item h3 { font-size: 1.4rem; margin-bottom: 8px; }
+		.faq-item p { color: #625d54; font-size: .96rem; margin: 0; }
+		.testimonial-grid { display: grid; gap: 20px; grid-template-columns: repeat(3, minmax(0,1fr)); margin-top: 40px; }
+		.testimonial-card { background: #fffaf2; border: 1px solid var(--line); padding: 24px 22px; }
+		.rating { color: var(--rust); letter-spacing: .12em; margin-bottom: 12px; }
+		.testimonial-card p { color: #625d54; font-size: .97rem; margin: 0 0 16px; }
+		.testimonial-card strong { display: block; font-size: .75rem; letter-spacing: .12em; text-transform: uppercase; color: var(--forest); }
+		.process-card { background: #fffaf2; border: 1px solid var(--line); padding: 28px 22px; }
+		.process-card .step { display: inline-flex; background: var(--cream); color: var(--forest); font-size: .72rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; padding: 7px 10px; margin-bottom: 14px; }
+		.process-card h3 { font-size: 1.5rem; margin-bottom: 8px; }
+		.process-card p { color: #625d54; font-size: .96rem; margin: 0; }
+		.bonus-grid { align-items: center; display: grid; gap: 65px; grid-template-columns: 1.1fr .9fr; }
+		.bonus-image { box-shadow: 14px 20px 40px rgba(45, 31, 16, .13); }
+		.checklist { list-style: none; margin: 28px 0 0; padding: 0; }
+		.checklist li { border-top: 1px solid var(--line); padding: 13px 0 13px 28px; position: relative; }
+		.checklist li::before { color: var(--rust); content: "✓"; font-weight: 700; left: 0; position: absolute; }
+		.guarantee-box { background: var(--forest); color: #fffaf2; padding: 32px 28px; border: 1px solid rgba(255,255,255,.08); }
+		.guarantee-box h3 { font-size: 2rem; margin-bottom: 12px; }
+		.guarantee-box p { color: rgba(255,255,255,.76); margin: 0; }
+		.urgency-box { background: linear-gradient(135deg, #e9d0be 0%, #f3e8de 100%); border: 1px solid rgba(25,61,53,.12); padding: 36px 28px; text-align: center; }
+		.urgency-box h2 { margin-bottom: 14px; }
+		.urgency-box p { max-width: 700px; margin: 0 auto 22px; color: var(--ink); }
+		.audience-grid { display: grid; gap: 20px; grid-template-columns: repeat(4, minmax(0,1fr)); margin-top: 38px; }
+		.audience-card { background: #fffaf2; border: 1px solid var(--line); padding: 22px 20px; }
+		.audience-card h3 { font-size: 1.45rem; margin-bottom: 8px; }
+		.audience-card p { color: #625d54; font-size: .96rem; margin: 0; }
+		.market-grid { display: grid; gap: 18px; grid-template-columns: repeat(2, minmax(0,1fr)); margin-top: 34px; }
+		.market-card { background: #fffaf2; border: 1px solid var(--line); padding: 24px; }
+		.market-card h3 { font-size: 1.5rem; margin-bottom: 8px; }
+		.market-card p { color: #625d54; font-size: .96rem; margin: 0; }
+		.category-panel { background: #fffaf2; border: 1px solid var(--line); padding: 28px 26px; }
+		.category-panel h3 { font-size: 1.5rem; margin-bottom: 18px; }
+		.category-block { padding: 20px 0; border-top: 1px solid var(--line); }
+		.category-block:first-of-type { border-top: 0; padding-top: 0; }
+		.category-block h4 { margin: 0 0 12px; font-size: 1.15rem; }
+		.category-block ul { margin: 0; padding-left: 18px; color: #625d54; }
+		.category-block li { margin-bottom: 6px; }
+		.moneyback-strip { display: flex; align-items: center; justify-content: center; gap: 14px; flex-wrap: wrap; margin-top: 18px; }
+		.moneyback-strip span { display: inline-flex; align-items: center; justify-content: center; background: var(--forest); color: #fffaf2; border-radius: 999px; padding: 10px 14px; font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; font-weight: 700; }
+		.offer-section { background: #e8ddc8; padding: 100px 0; }
+		.final { background: linear-gradient(135deg, #b85f52 0%, #a63f4b 100%); color: #fffaf2; padding: 90px 0; text-align: center; }
+		.final .button { background: #fffaf2; border-color: #fffaf2; color: var(--forest-deep); padding: 18px 30px; }
+		.offer-card { background: var(--paper); border: 1px solid rgba(25,61,53,.18); display: grid; grid-template-columns: 1fr .8fr; margin: 0 auto; max-width: 920px; }
+		.offer-copy { padding: 48px; }
+		.offer-copy h2 { font-size: clamp(2.3rem, 4vw, 3.8rem); }
+		.offer-copy p { color: #625d54; }
+		.included { display: grid; gap: 9px; grid-template-columns: 1fr 1fr; list-style: none; margin: 25px 0 32px; padding: 0; }
+		.included li { font-size: .9rem; padding-left: 20px; position: relative; }
+		.included li::before { color: var(--rust); content: "+"; font-weight: 700; left: 0; position: absolute; }
+		.price-panel { align-items: center; background: var(--forest); color: #fffaf2; display: flex; flex-direction: column; justify-content: center; padding: 36px; text-align: center; }
+		.price-panel .eyebrow { color: var(--gold-light); }
+		.old-price { color: #a9b6a8; font-size: .95rem; margin: 20px 0 0; text-decoration: line-through; }
+		.price { font-family: var(--serif); font-size: clamp(4rem, 8vw, 6.5rem); line-height: .9; margin: 4px 0 12px; }
+		.price small { font-family: var(--sans); font-size: .95rem; font-weight: 500; }
+		.saving { background: var(--gold); color: var(--forest-deep); font-size: .75rem; font-weight: 700; letter-spacing: .08em; padding: 7px 11px; text-transform: uppercase; }
+		.billing { color: #b9c8b9; font-size: .8rem; margin: 17px 0 0; }
+		.final { background: var(--rust); color: #fffaf2; padding: 82px 0; text-align: center; }
+		.final h2 { margin-left: auto; margin-right: auto; max-width: 700px; }
+		.final p { color: #f4d8ca; margin: 0 auto 25px; max-width: 580px; }
+		.final .button { background: #fffaf2; border-color: #fffaf2; color: var(--forest-deep); }
+		footer { color: #756e63; font-size: .8rem; padding: 25px 0; text-align: center; }
+		.footer-links { display: flex; flex-wrap: wrap; gap: 18px; justify-content: center; margin-top: 8px; }
+		.footer-links a { color: var(--forest); text-decoration: none; }
+		.footer-links a:hover { color: var(--rust); text-decoration: underline; }
+		[data-reveal] { opacity: 0; transform: translateY(20px); transition: opacity .7s ease, transform .7s ease; }
+		[data-reveal].visible { opacity: 1; transform: translateY(0); }
+		@media (max-width: 780px) {
+			.shell { width: min(100% - 28px, 560px); }
+			.nav-note { display: none; }
+			.hero { padding-top: 20px; }
+			.hero-grid, .intro-grid, .bonus-grid, .offer-card { grid-template-columns: 1fr; }
+			.hero-copy { order: 1; }
+			.hero-visual { order: 0; }
+			.section { padding: 76px 0; }
+			.proof-items { gap: 8px; }
+			.proof-items strong { font-size: 1.1rem; }
+			.proof-items span { font-size: .65rem; }
+			.gallery { gap: 12px; grid-template-columns: repeat(2, 1fr); }
+			.bonus-grid { gap: 35px; }
+			.offer-copy { padding: 32px 24px; }
+			.price-panel { min-height: 330px; }
+		}
+		@media (max-width: 420px) {
+			h1 { font-size: 3.1rem; }
+			.included { grid-template-columns: 1fr; }
+			.hero-actions .button { width: 100%; }
+		}
+	</style>
+</head>
+<body>
+	<div class="announcement">Launch collection · save 60% today</div>
+	<header class="shell nav">
+		<div class="wordmark">ANIMALIA</div>
+		<div class="nav-note">A life beyond their homes · digital coloring collection</div>
+		<a class="button" href="#offer">See the collection</a>
+	</header>
+
+	<main>
+		<section class="hero">
+			<div class="shell hero-grid">
+				<div class="hero-copy" data-reveal>
+					<div class="eyebrow">A premium coloring journey</div>
+					<h1>Every animal has a story worth coloring.</h1>
+					<p>Animalia is a premium digital coloring collection created for adults, teens, gift buyers, and creative hobbyists who want a calmer, more beautiful way to unplug. Inside are 300+ story-rich scenes built around work, adventure, celebration, and everyday life.</p>
+					<div class="hero-actions">
+						<a class="button" href="#offer">Get Animalia for $12.99 <span>→</span></a>
+						<a class="button light" href="#samples">See sample pages</a>
+					</div>
+					<div class="top-badges">
+						<span>300+ scenes</span>
+						<span>170 prompts</span>
+						<span>7-day guarantee</span>
+					</div>
+					<p class="microcopy">Instant digital access · print at home · perfect for self-care, gifting, KDP, Etsy, and creative selling</p>
+				</div>
+				<div class="hero-visual" data-reveal>
+					<img src="hero product mockup.png" alt="Animalia product mockup showing the main coloring collection cover and pages">
+				</div>
+			</div>
+		</section>
+
+		<div class="proof-bar">
+			<div class="shell proof-items">
+				<div><strong>300+</strong><span>master scenes</span></div>
+				<div><strong>170</strong><span>bonus prompts</span></div>
+				<div><strong>7 days</strong><span>money-back</span></div>
+			</div>
+		</div>
+
+		<section class="section">
+			<div class="shell intro-grid">
+				<div class="intro-copy" data-reveal>
+					<div class="eyebrow">More than a coloring book</div>
+					<h2>A whole world, waiting in black and white.</h2>
+					<p>Animalia turns an ordinary creative break into a small escape. Follow familiar animal characters through richly layered scenes that reward slow looking and playful color choices.</p>
+					<div class="feature-list">
+						<div class="feature"><div class="feature-number">01</div><div><h3>Story-rich scenes</h3><p>Markets, mountains, gardens, libraries, festivals, and more.</p></div></div>
+						<div class="feature"><div class="feature-number">02</div><div><h3>Print what inspires you</h3><p>Choose a single favorite page or build a complete creative library.</p></div></div>
+						<div class="feature"><div class="feature-number">03</div><div><h3>For quiet, shared moments</h3><p>A thoughtful screen-free activity for adults, families, and curious makers.</p></div></div>
+					</div>
+				</div>
+				<div class="visual-frame" data-reveal><img src="images visuals.png" alt="Six Animalia coloring scenes arranged on a desk"></div>
+			</div>
+		</section>
+
+		<section class="section">
+			<div class="shell">
+				<div class="section-heading" data-reveal>
+					<div class="eyebrow">Who this is for</div>
+					<h2>Built for the people who love relaxing, gifting, and creative side income.</h2>
+				</div>
+				<div class="audience-grid">
+					<div class="audience-card" data-reveal>
+						<h3>Adults</h3>
+						<p>Perfect for stress relief, cozy evenings, and screen-free moments that quiet the mind.</p>
+					</div>
+					<div class="audience-card" data-reveal>
+						<h3>Teens</h3>
+						<p>A fun, creative hobby with a warm stylized look that feels fresh, calming, and easy to enjoy.</p>
+					</div>
+					<div class="audience-card" data-reveal>
+						<h3>Gift buyers</h3>
+						<p>Ideal for birthdays, thoughtful presents, and little “you deserve this” moments.</p>
+					</div>
+					<div class="audience-card" data-reveal>
+						<h3>Sellers</h3>
+						<p>Great for creators who want to sell printable bundles on Etsy, KDP, Gumroad, and similar platforms.</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="section">
+			<div class="shell">
+				<div class="section-heading" data-reveal>
+					<div class="eyebrow">Why it feels so special</div>
+					<h2>It’s not just a coloring book — it’s a tiny daily escape.</h2>
+					<p class="long-copy">Animalia was created for people who want something beautiful, calming, and genuinely worth coming back to. It gives you a chance to slow down, unplug, and enjoy creative time without pressure. With each page, you step deeper into a world full of personality, warmth, and life.</p>
+				</div>
+				<div class="story-grid">
+					<div class="story-card" data-reveal>
+						<div class="number">01</div>
+						<h3>Slow living energy</h3>
+						<p>Each page turns ordinary moments into beautiful scenes that invite you to pause, breathe, and enjoy the process.</p>
+					</div>
+					<div class="story-card" data-reveal>
+						<div class="number">02</div>
+						<h3>Creative freedom</h3>
+						<p>There are no rules here. You can color softly, boldly, wild, or minimal — however your mood wants it.</p>
+					</div>
+					<div class="story-card" data-reveal>
+						<div class="number">03</div>
+						<h3>Made to be loved</h3>
+						<p>Animalia is designed to feel premium, comforting, and satisfying — something you will actually want to keep and revisit.</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="section dark-section" id="samples">
+			<div class="shell">
+				<div class="section-heading center" data-reveal>
+					<div class="eyebrow">Inside the collection</div>
+					<h2>Six sample pages. Endless ways to make them yours.</h2>
+					<p>These are real examples of the detailed linework and storybook settings waiting inside Animalia.</p>
+				</div>
+				<div class="gallery">
+					<figure class="sample-card" data-reveal><img src="1.png" alt="Coloring page showing a village market and train station"><figcaption>Market Day</figcaption></figure>
+					<figure class="sample-card" data-reveal><img src="2.png" alt="Animalia coloring page sample"><figcaption>A Quiet Tea Garden</figcaption></figure>
+					<figure class="sample-card" data-reveal><img src="3.png" alt="Animalia coloring page sample"><figcaption>New Places to Explore</figcaption></figure>
+					<figure class="sample-card" data-reveal><img src="4.png" alt="Animalia coloring page sample"><figcaption>Harvest Season</figcaption></figure>
+					<figure class="sample-card" data-reveal><img src="5.png" alt="Animalia coloring page sample"><figcaption>Friends on the Trail</figcaption></figure>
+					<figure class="sample-card" data-reveal><img src="6.png" alt="Animalia coloring page sample"><figcaption>A Day in the Wild</figcaption></figure>
+				</div>
+				<p class="sample-note">From intricate landscapes to lovable characters, every page is designed to feel satisfying before, during, and after you color it.</p>
+			</div>
+		</section>
+
+		<section class="section">
+			<div class="shell">
+				<div class="section-heading" data-reveal>
+					<div class="eyebrow">The business opportunity</div>
+					<h2>You can sell this on printables, KDP, Etsy, and direct digital shops.</h2>
+				</div>
+				<div class="market-grid">
+					<div class="market-card" data-reveal>
+						<h3>Sell as a printable</h3>
+						<p>Create instant PDF bundles for Etsy, Gumroad, Shopify, and your own storefront with high-value seasonal gift themes.</p>
+					</div>
+					<div class="market-card" data-reveal>
+						<h3>Publish on KDP</h3>
+						<p>Turn the collection into paperback or digital products that appeal to adults, teens, and relaxing hobby buyers.</p>
+					</div>
+					<div class="market-card" data-reveal>
+						<h3>Bundle for side income</h3>
+						<p>Sell themed packs, gift bundles, and mini collections to people who want creative products with real lifestyle appeal.</p>
+					</div>
+					<div class="market-card" data-reveal>
+						<h3>Best earning opportunity</h3>
+						<p>Coloring books are a proven evergreen niche, and this format gives you a strong chance to build repeat income through digital products.</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="section">
+			<div class="shell">
+				<div class="section-heading" data-reveal>
+					<div class="eyebrow">What makes it valuable</div>
+					<h2>High quality, full of imagination, and built to be enjoyed again and again.</h2>
+				</div>
+				<div class="benefits-grid">
+					<div class="benefit" data-reveal>
+						<h3>Premium detail</h3>
+						<p>Every page is carefully designed to feel rich, immersive, and relaxing without being too overwhelming.</p>
+					</div>
+					<div class="benefit" data-reveal>
+						<h3>Instant enjoyment</h3>
+						<p>It gives you an instant creative outlet for evenings, coffee breaks, weekends, and quiet reset moments.</p>
+					</div>
+					<div class="benefit" data-reveal>
+						<h3>A thoughtful gift</h3>
+						<p>Whether it is for yourself or someone you love, Animalia feels personal, useful, and special.</p>
+					</div>
+					<div class="benefit" data-reveal>
+						<h3>Built for repeat use</h3>
+						<p>Print your favorite pages, revisit them anytime, and enjoy a creative ritual that never gets old.</p>
+					</div>
+				</div>
+				<div class="moneyback-strip" data-reveal>
+					<span>Limited-time offer</span>
+					<span>7-day money-back guarantee</span>
+				</div>
+			</div>
+		</section>
+
+		<section class="section">
+			<div class="shell">
+				<div class="section-heading" data-reveal>
+					<div class="eyebrow">How it works</div>
+					<h2>Easy to use, beautiful to keep.</h2>
+				</div>
+				<div class="process-grid">
+					<div class="process-card" data-reveal>
+						<div class="step">Step 1</div>
+						<h3>Download instantly</h3>
+						<p>Get immediate access and start exploring the collection right away, without waiting or extra steps.</p>
+					</div>
+					<div class="process-card" data-reveal>
+						<div class="step">Step 2</div>
+						<h3>Print your favorites</h3>
+						<p>Pick the scenes you love most and print them whenever you want a relaxing moment for yourself.</p>
+					</div>
+					<div class="process-card" data-reveal>
+						<div class="step">Step 3</div>
+						<h3>Enjoy the calm</h3>
+						<p>Color at your own pace, slow down, and let each page become a quiet, joyful part of your day.</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="section">
+			<div class="shell">
+				<div class="section-heading" data-reveal>
+					<div class="eyebrow">Questions buyers ask</div>
+					<h2>Everything you need to know before you get started.</h2>
+				</div>
+				<div class="faq-grid">
+					<div class="faq-item" data-reveal>
+						<h3>Is it easy to use?</h3>
+						<p>Yes. You get instant access, print the pages you love, and enjoy them right away without any complicated setup.</p>
+					</div>
+					<div class="faq-item" data-reveal>
+						<h3>Is it worth the price?</h3>
+						<p>Absolutely. At $12.99, you get a premium collection built for comfort, creativity, and repeated enjoyment.</p>
+					</div>
+					<div class="faq-item" data-reveal>
+						<h3>Can I print it at home?</h3>
+						<p>Yes. The collection is designed to be printable, so you can enjoy it easily from home whenever you want.</p>
+					</div>
+					<div class="faq-item" data-reveal>
+						<h3>Will I use it more than once?</h3>
+						<p>Definitely. This is the kind of collection people revisit again and again because it feels calming, relaxing, and inspiring.</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="section">
+			<div class="shell">
+				<div class="section-heading" data-reveal>
+					<div class="eyebrow">What’s inside the collection</div>
+					<h2>Three premium parts. 300 master scenes. Built for calm, creativity, and commercial appeal.</h2>
+				</div>
+				<div class="category-panel" data-reveal>
+					<div class="category-block">
+						<h4>PART I — WHEN ANIMALS GO TO WORK</h4>
+						<ul>
+							<li>Restaurants & Food — 20</li>
+							<li>Shops & Village Businesses — 15</li>
+							<li>Creative Professions — 15</li>
+							<li>Nature & Outdoor Jobs — 15</li>
+							<li>Crafts & Workshops — 15</li>
+							<li>Community & Helpful Jobs — 10</li>
+							<li>Travel & Transportation Jobs — 10</li>
+						</ul>
+					</div>
+					<div class="category-block">
+						<h4>PART II — ANIMAL ADVENTURES</h4>
+						<ul>
+							<li>Forest & Woodland Adventures — 15</li>
+							<li>Mountain Adventures — 15</li>
+							<li>Ocean & Coastal Adventures — 15</li>
+							<li>Travel & Transportation Adventures — 15</li>
+							<li>Camping & Outdoor Adventures — 15</li>
+							<li>Discovery & Treasure Adventures — 10</li>
+							<li>Magical Adventures — 15</li>
+						</ul>
+					</div>
+					<div class="category-block">
+						<h4>PART III — ANIMAL HOLIDAYS & CELEBRATIONS</h4>
+						<ul>
+							<li>Seasonal Celebrations — 20</li>
+							<li>Village Festivals — 15</li>
+							<li>Birthday & Personal Celebrations — 15</li>
+							<li>Food & Picnic Celebrations — 15</li>
+							<li>Music & Cultural Celebrations — 15</li>
+							<li>Winter & Snow Celebrations — 10</li>
+							<li>Grand ANIMALIA Celebrations — 10</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="section">
+			<div class="shell">
+				<div class="section-heading" data-reveal>
+					<div class="eyebrow">What real buyers are saying</div>
+					<h2>People come back because it genuinely feels good.</h2>
+				</div>
+				<div class="testimonial-grid">
+					<div class="testimonial-card" data-reveal>
+						<div class="rating">★★★★★</div>
+						<p>“This collection feels premium in the best way. It is calming, beautiful, and I keep going back to it when I want a quiet reset.”</p>
+						<strong>— Sarah M.</strong>
+					</div>
+					<div class="testimonial-card" data-reveal>
+						<div class="rating">★★★★★</div>
+						<p>“The artwork is lovely and the whole experience feels thoughtful and relaxing. It was absolutely worth the price.”</p>
+						<strong>— Emma R.</strong>
+					</div>
+					<div class="testimonial-card" data-reveal>
+						<div class="rating">★★★★★</div>
+						<p>“I bought it for myself and ended up gifting it to a friend too. It is one of those little purchases that feels special every time.”</p>
+						<strong>— Nicole T.</strong>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="section">
+			<div class="shell">
+				<div class="urgency-box" data-reveal>
+					<div class="eyebrow">Last chance to get it</div>
+					<h2>Today’s low price is not forever.</h2>
+					<p>Animalia was created to bring beauty and calm into everyday life. If you have been waiting for a reason to treat yourself, this is it. The value is already there, the demand is real, and the low price won’t stay this way forever. Buy now before the launch window closes.</p>
+					<a class="button" href="#offer">Get Animalia for $12.99</a>
+				</div>
+			</div>
+		</section>
+
+		<section class="section">
+			<div class="shell bonus-grid">
+				<div class="bonus-image" data-reveal><img src="bonus mockup.png" alt="Animalia bonus collection with four colorful prompt books"></div>
+				<div data-reveal>
+					<div class="eyebrow">Included at no extra cost</div>
+					<h2>The bonus collection makes the story bigger.</h2>
+					<p>Alongside the 300+ master scenes, you get a prompt library to help you invent new characters, settings, professions, and adventures.</p>
+					<ul class="checklist">
+						<li>50 Animal Profession prompts</li>
+						<li>50 Adventure Activity prompts</li>
+						<li>50 Celebration & Festival prompts</li>
+						<li>20 Animalia Scene Enhancement prompts</li>
+					</ul>
+				</div>
+			</div>
+		</section>
+
+		<section class="section">
+			<div class="shell">
+				<div class="guarantee-box" data-reveal>
+					<h3>One small purchase. One big feeling of calm.</h3>
+					<p>Animalia is designed to bring comfort, creativity, and a sense of joy into your day. You will never regret this, because it is the kind of purchase that keeps giving you beautiful moments again and again.</p>
+				</div>
+			</div>
+		</section>
+
+		<section class="offer-section" id="offer">
+			<div class="shell">
+				<div class="offer-card" data-reveal>
+					<div class="offer-copy">
+						<div class="eyebrow">Your complete digital collection</div>
+						<h2>Bring the whole world home.</h2>
+						<p>One simple download gives you the full Animalia experience and every bonus prompt collection.</p>
+						<ul class="included">
+							<li>300+ premium coloring scenes</li>
+							<li>170 bonus creative prompts</li>
+							<li>Instant digital delivery</li>
+							<li>Print-ready pages</li>
+							<li>Personal creative use</li>
+							<li>Lifetime access to your files</li>
+						</ul>
+						<a class="button" href="#final">Unlock Animalia</a>
+					</div>
+					<div class="price-panel">
+						<div class="eyebrow">Today only</div>
+						<div class="old-price">Regularly $27</div>
+						<div class="price">$12.99 <small>USD</small></div>
+						<div class="saving">Low price. High value.</div>
+						<p class="billing">This is exactly what you get at the launch offer price: the complete Animalia collection plus all 170 bonus prompts.</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="final" id="final">
+			<div class="shell" data-reveal>
+				<div class="eyebrow">One collection. Hundreds of creative hours.</div>
+				<h2>Give yourself somewhere beautiful to wander.</h2>
+				<p>For only $12.99, you get the complete Animalia collection with 300+ story-rich coloring scenes, 170 bonus prompts, and a calming creative escape that is easy to enjoy again and again. This is a limited-time offer, and you are protected by a 7-day money-back guarantee. You will never regret this purchase — it is a little gift to your mind, your creativity, and your daily routine.</p>
+				<a class="button" href="#offer">Get the complete collection →</a>
+			</div>
+		</section>
+	</main>
+
+	<footer>
+		<div>© 2026 Animalia · Digital coloring collection</div>
+		<div class="footer-links">
+			<a href="https://support-seven-eta.vercel.app/">Support</a>
+			<a href="https://privacy-five-rho.vercel.app/">Privacy Policy</a>
+			<a href="https://disclaimer-ten-rho.vercel.app/">Disclaimer</a>
+		</div>
+	</footer>
+	<script>
+		const revealItems = document.querySelectorAll('[data-reveal]');
+		const revealObserver = new IntersectionObserver((entries, observer) => {
+			entries.forEach((entry) => {
+				if (entry.isIntersecting) {
+					entry.target.classList.add('visible');
+					observer.unobserve(entry.target);
+				}
+			});
+		}, { threshold: .12 });
+		revealItems.forEach((item) => revealObserver.observe(item));
+	</script>
+</body>
+</html>
